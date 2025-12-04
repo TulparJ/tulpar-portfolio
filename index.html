@@ -5,55 +5,292 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tulpar Janbolat | Portfolio</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0d0d0d;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 100%);
       color: #e6e6e6;
+      overflow-x: hidden;
     }
+
+    /* Animated background particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: rgba(255, 100, 100, 0.5);
+      border-radius: 50%;
+      animation: float 15s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+    }
+
+    /* Header styles */
     header {
-      padding: 2rem;
+      position: relative;
+      padding: 4rem 2rem;
       text-align: center;
-      background: #111;
+      background: linear-gradient(135deg, #1a0a0a 0%, #0a0a1a 100%);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      animation: slideDown 0.8s ease-out;
     }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     h1 {
-      margin: 0;
-      font-size: 2.5rem;
+      font-size: 3rem;
+      background: linear-gradient(135deg, #ff4444 0%, #ffbb33 50%, #4444ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      animation: glow 2s ease-in-out infinite;
     }
+
+    @keyframes glow {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.3); }
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #b0b0b0;
+      margin-bottom: 1.5rem;
+      animation: fadeIn 1s ease-out 0.3s backwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Navigation */
     nav {
       display: flex;
       justify-content: center;
       gap: 2rem;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
+      animation: fadeIn 1s ease-out 0.5s backwards;
     }
+
     nav a {
       color: #e6e6e6;
       text-decoration: none;
       font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 68, 68, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    nav a:hover::before {
+      left: 100%;
+    }
+
+    nav a:hover {
+      background: rgba(255, 68, 68, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 68, 68, 0.3);
+    }
+
+    /* Section styles */
     section {
+      position: relative;
       max-width: 900px;
-      margin: auto;
+      margin: 3rem auto;
       padding: 2rem;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
     }
+
+    section:nth-child(2) { animation-delay: 0.2s; }
+    section:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #ffbb33;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #ff4444, #ffbb33, #4444ff);
+      animation: expandLine 1s ease-out forwards;
+    }
+
+    @keyframes expandLine {
+      to { width: 100%; }
+    }
+
+    /* Project cards */
     .project-card {
-      background: #1a1a1a;
+      background: linear-gradient(135deg, #1a0a0a 0%, #0a0a1a 100%);
       padding: 1.5rem;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-      border: 1px solid #333;
+      border-radius: 15px;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(255, 68, 68, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
     }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 187, 51, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      border-color: rgba(255, 68, 68, 0.5);
+      box-shadow: 0 10px 30px rgba(255, 68, 68, 0.2);
+    }
+
     .project-card h3 {
       margin-top: 0;
+      margin-bottom: 0.8rem;
+      color: #4444ff;
+      font-size: 1.4rem;
+      transition: color 0.3s ease;
     }
+
+    .project-card:hover h3 {
+      color: #6666ff;
+    }
+
+    .project-card p {
+      line-height: 1.6;
+      color: #c0c0c0;
+      margin-bottom: 1rem;
+    }
+
+    .project-card a {
+      color: #ffbb33;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .project-card a::after {
+      content: '→';
+      transition: transform 0.3s ease;
+    }
+
+    .project-card a:hover {
+      color: #ffdd66;
+      gap: 0.8rem;
+    }
+
+    .project-card a:hover::after {
+      transform: translateX(5px);
+    }
+
+    /* Footer */
     footer {
       text-align: center;
       padding: 2rem;
       color: #777;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255, 68, 68, 0.1);
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* About section paragraph */
+    #about p {
+      line-height: 1.8;
+      font-size: 1.1rem;
+      color: #d0d0d0;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      nav { flex-direction: column; gap: 1rem; }
+      section { padding: 1.5rem; margin: 2rem auto; }
     }
   </style>
 </head>
 <body>
+  <!-- Animated background particles -->
+  <div class="particles" id="particles"></div>
+
   <header>
     <h1>Tulpar Janbolat</h1>
     <p>Computer Science Student • Aspiring Software Engineer</p>
@@ -75,21 +312,61 @@
 
   <section id="projects">
     <h2>Projects</h2>
-
     <div class="project-card">
       <h3>Java Data Structures Repo</h3>
       <p>Comprehensive collection of data structures and algorithms implemented in Java — arrays, lists, stacks, queues, and more.</p>
       <a href="https://github.com/TulparJ/java-data-structures/tree/main" target="_blank">View on GitHub</a>
     </div>
-
     <div class="project-card">
       <h3>OOP Firm Project</h3>
       <p>An object-oriented Java project simulating firm management — uses classes/objects to model employees, departments, and project handling.</p>
       <a href="https://github.com/TulparJ/java-data-structures/tree/main/OOP-FirmProject" target="_blank">View on GitHub</a>
     </div>
-
     <div class="project-card">
       <h3>Wrestling Ranking & Algorithms</h3>
       <p>Custom algorithms and ranking logic — a fun project inspired by personal interests and coding progress.</p>
       <a href="https://github.com/TulparJ/java-data-structures/tree/main/wrestlingranking" target="_blank">View on GitHub</a>
     </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: your.email@example.com</p>
+    <p>GitHub: <a href="https://github.com/TulparJ" target="_blank" style="color: #64b5f6;">github.com/TulparJ</a></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Tulpar Janbolat. Built with passion and code.</p>
+  </footer>
+
+  <script>
+    // Generate animated particles
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 15 + 's';
+      particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+      particlesContainer.appendChild(particle);
+    }
+
+    // Smooth scroll animation observer
+    const sections = document.querySelectorAll('section');
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+</body>
+</html>
