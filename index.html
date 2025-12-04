@@ -56,14 +56,8 @@
     }
 
     @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
@@ -134,7 +128,7 @@
       box-shadow: 0 5px 15px rgba(255, 68, 68, 0.3);
     }
 
-    /* Section styles */
+    /* Sections */
     section {
       position: relative;
       max-width: 900px;
@@ -148,14 +142,8 @@
     section:nth-child(3) { animation-delay: 0.4s; }
 
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h2 {
@@ -181,7 +169,7 @@
       to { width: 100%; }
     }
 
-    /* Project cards */
+    /* Project Cards */
     .project-card {
       background: linear-gradient(135deg, #1a0a0a 0%, #0a0a1a 100%);
       padding: 1.5rem;
@@ -191,23 +179,6 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
-      cursor: pointer;
-    }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255, 187, 51, 0.1) 0%, transparent 70%);
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-
-    .project-card:hover::before {
-      opacity: 1;
     }
 
     .project-card:hover {
@@ -217,15 +188,10 @@
     }
 
     .project-card h3 {
-      margin-top: 0;
       margin-bottom: 0.8rem;
       color: #4444ff;
       font-size: 1.4rem;
       transition: color 0.3s ease;
-    }
-
-    .project-card:hover h3 {
-      color: #6666ff;
     }
 
     .project-card p {
@@ -254,41 +220,16 @@
       gap: 0.8rem;
     }
 
-    .project-card a:hover::after {
-      transform: translateX(5px);
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: #777;
-      margin-top: 3rem;
-      border-top: 1px solid rgba(255, 68, 68, 0.1);
-    }
-
-    /* Smooth scroll */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* About section paragraph */
-    #about p {
-      line-height: 1.8;
-      font-size: 1.1rem;
-      color: #d0d0d0;
-    }
-
-    /* Responsive design */
-    @media (max-width: 768px) {
-      h1 { font-size: 2rem; }
-      nav { flex-direction: column; gap: 1rem; }
-      section { padding: 1.5rem; margin: 2rem auto; }
+    /* Contact */
+    #contact a {
+      color: #64b5f6;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <!-- Animated background particles -->
+
+  <!-- Background particles -->
   <div class="particles" id="particles"></div>
 
   <header>
@@ -304,35 +245,38 @@
   <section id="about">
     <h2>About Me</h2>
     <p>
-      Hey! I'm Tulpar — a CS student who loves building projects, learning new tech,
-      and leveling up every day. I'm currently exploring web development, data
-      structures, and cybersecurity.
+      Hey! I'm Tulpar — a CS student who loves building projects, picking up new tech,
+      and improving every day. I'm currently exploring web development, data structures,
+      and cybersecurity.
     </p>
   </section>
 
   <section id="projects">
     <h2>Projects</h2>
+
     <div class="project-card">
       <h3>Java Data Structures Repo</h3>
-      <p>Comprehensive collection of data structures and algorithms implemented in Java — arrays, lists, stacks, queues, and more.</p>
+      <p>A full collection of core data structures implemented from scratch in Java — including arrays, linked lists, stacks, queues, sets, and maps. Built to deepen understanding of algorithms, memory behavior, and performance through hands-on implementation.</p>
       <a href="https://github.com/TulparJ/java-data-structures/tree/main" target="_blank">View on GitHub</a>
     </div>
+
     <div class="project-card">
       <h3>OOP Firm Project</h3>
-      <p>An object-oriented Java project simulating firm management — uses classes/objects to model employees, departments, and project handling.</p>
+      <p>An object-oriented Java simulation that models a company’s workflow. Includes employees, executives, volunteers, payroll systems, and more — demonstrating inheritance, polymorphism, and clean OOP architecture.</p>
       <a href="https://github.com/TulparJ/java-data-structures/tree/main/OOP-FirmProject" target="_blank">View on GitHub</a>
     </div>
+
     <div class="project-card">
       <h3>Wrestling Ranking & Algorithms</h3>
-      <p>Custom algorithms and ranking logic — a fun project inspired by personal interests and coding progress.</p>
+      <p>An algorithmic ranking system for wrestlers that calculates scores, processes structured data, and applies sorting logic. Combines domain interest with real problem-solving and algorithm design.</p>
       <a href="https://github.com/TulparJ/java-data-structures/tree/main/wrestlingranking" target="_blank">View on GitHub</a>
     </div>
   </section>
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>Email: your.email@example.com</p>
-    <p>GitHub: <a href="https://github.com/TulparJ" target="_blank" style="color: #64b5f6;">github.com/TulparJ</a></p>
+    <p>Email: tulparjanbolat0522@gmail.com</p>
+    <p>GitHub: <a href="https://github.com/TulparJ" target="_blank">github.com/TulparJ</a></p>
   </section>
 
   <footer>
@@ -343,30 +287,14 @@
     // Generate animated particles
     const particlesContainer = document.getElementById('particles');
     for (let i = 0; i < 30; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.animationDelay = Math.random() * 15 + 's';
-      particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-      particlesContainer.appendChild(particle);
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.animationDelay = Math.random() * 15 + 's';
+      p.style.animationDuration = (15 + Math.random() * 10) + 's';
+      particlesContainer.appendChild(p);
     }
-
-    // Smooth scroll animation observer
-    const sections = document.querySelectorAll('section');
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
-        }
-      });
-    }, observerOptions);
-
-    sections.forEach(section => observer.observe(section));
   </script>
+
 </body>
 </html>
